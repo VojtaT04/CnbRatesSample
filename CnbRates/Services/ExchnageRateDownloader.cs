@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Globalization;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Globalization;
 using CnbRates.Model;
 
 namespace CnbRates.Services
@@ -20,7 +15,7 @@ namespace CnbRates.Services
 		public async Task<IEnumerable<ExchangeRate>> DownloadDayAsync(DateTime day)
 		{
 			using var httpClient = new HttpClient();
-			var url = $"https://www.cnb.cz/cs/financni-trhy/devizovy-trh/kurzy-devizoveho-trhu/kurzy-devizoveho-trhu/denni_kurz.txt;?date={day.ToString("g")}";
+			var url = $"https://www.cnb.cz/cs/financni-trhy/devizovy-trh/kurzy-devizoveho-trhu/kurzy-devizoveho-trhu/denni_kurz.txt;?date={day:g}";
 			var content = await httpClient.GetStringAsync(url);
 
 			return ParseContent(content, day);
